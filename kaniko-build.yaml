@@ -17,12 +17,4 @@ spec:
     - "--destination=registry.local.test/whatismyip-kaniko:latest"
     #- "--insecure"
     - "--skip-tls-verify"
-    volumeMounts:
-    - name: build-context
-      mountPath: /workspace
   restartPolicy: Never
-  volumes:
-  - name: build-context
-    hostPath:
-      path: .
-      type: Directory
