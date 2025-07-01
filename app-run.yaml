@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: whatismyip
-    image: local-reg.test/whatismyip-kaniko:latest
+    image: registry.local.test/whatismyip-kaniko:latest
     resources:
       requests:
         memory: "64Mi"

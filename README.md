@@ -15,7 +15,7 @@ minikube start --embed-certs
 - add hosts file entry for the registry hostname and IP of the ingress controller
 '''
 minikube ssh
-echo "10.102.193.8 local-reg.test" | sudo tee -a /etc/hosts #lost after a restart
+echo "10.102.193.8 registry.local.test" | sudo tee -a /etc/hosts #lost after a restart
 '''
 - install the kaniko-build manifest. Make sure to have the registry hostname and IP of the ingress controller in the hostAliases
 - install the app manifest.

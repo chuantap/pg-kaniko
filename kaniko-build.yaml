@@ -6,7 +6,7 @@ spec:
   hostAliases:
     - ip: "10.102.193.8"   # <-- Your Ingress controller's service IP
       hostnames:
-        - "local-reg.test"
+        - "registry.local.test"
   containers:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:latest
@@ -14,7 +14,7 @@ spec:
     - "--dockerfile=Dockerfile"
     - "--context=git://github.com/chuantap/pg-kaniko"
     #- "--destination=registry.kube-system.svc.cluster.local/whatismyip-kaniko:latest"
-    - "--destination=local-reg.test/whatismyip-kaniko:latest"
+    - "--destination=registry.local.test/whatismyip-kaniko:latest"
     #- "--insecure"
     - "--skip-tls-verify"
     volumeMounts:
