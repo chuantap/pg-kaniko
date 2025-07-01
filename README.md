@@ -3,12 +3,12 @@
 minikube addons enable registry
 minikube addons enable ingress
 ```
-- install cert manager and cert manager issuer, check the .yaml. Needed to create TLS cert for HTTPS ingress
+- install cert manager and cert manager issuer, check the .yaml. This is needed to create TLS certs for HTTPS ingresses
 - install the ingress manifest
-- export the ca cert created for the ingress by the cert manager issuer from the kubernetes secret and add it to trust store of minikube
+- export the ca root cert created by the cert manager issuer from the kubernetes secret and add it to the trust store of minikube
 ``` shell
-mkdir -p $HOME/.minikube/certs
-cp my_company.pem $HOME/.minikube/certs/my_company.pem
+kubectl get secret root-secret -n cert-manager -o jsonpath='{.data.ca\.crt}' | base64 -d > cert_manager_root_ca.pem
+cp cert_manager_root_ca.pem $HOME/.minikube/certs/cert_manager_root_ca.pem
 minikube stop
 minikube start --embed-certs
 ```
