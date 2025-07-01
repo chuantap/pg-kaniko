@@ -3,14 +3,19 @@ kind: Pod
 metadata:
   name: kaniko-build
 spec:
+  hostAliases:
+    - ip: "10.102.193.8"   # <-- Your Ingress controller's service IP
+      hostnames:
+        - "local-reg.test"
   containers:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:latest
     args:
     - "--dockerfile=Dockerfile"
-    - "--context=/workspace"
-    - "--destination=localhost:33237/whatismyip-kaniko:latest"
-    - "--insecure"
+    - "--context=git://github.com/chuantap/pg-kaniko"
+    #- "--destination=registry.kube-system.svc.cluster.local/whatismyip-kaniko:latest"
+    - "--destination=local-reg.test/whatismyip-kaniko:latest"
+    #- "--insecure"
     - "--skip-tls-verify"
     volumeMounts:
     - name: build-context

@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: registry-ingress
+  namespace: kube-system
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"   # <-- Allow unlimited size
+    cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"
+spec:
+  rules:
+    - host: local-reg.test
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: registry
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - local-reg.test
+      secretName: local-reg-tls-secret
