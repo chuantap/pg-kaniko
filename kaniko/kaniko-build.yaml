@@ -12,7 +12,7 @@ spec:
     image: gcr.io/kaniko-project/executor:latest
     args:
     - "--dockerfile=Dockerfile"
-    - "--context=git://github.com/chuantap/pg-kaniko"
+    - "--context=git://github.com/chuantap/pg"
     #- "--destination=registry.kube-system.svc.cluster.local/whatismyip-kaniko:latest"
     - "--destination=registry.local.test/whatismyip-kaniko:latest"
     #- "--insecure"
